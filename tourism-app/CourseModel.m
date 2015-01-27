@@ -16,8 +16,10 @@ AppDelegate *appDelegate;
 static CourseModel *_sharedManager = nil;
 
 + (CourseModel *)sharedManager {
-    if (!_sharedManager) {
-        _sharedManager = [CourseModel new];
+    @synchronized(self){
+        if (!_sharedManager) {
+            _sharedManager = [CourseModel new];
+        }
     }
     
     return _sharedManager;
