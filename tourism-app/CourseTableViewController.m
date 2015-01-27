@@ -25,85 +25,6 @@
 NSString *sortedType;
 int numberOfIndexPath_row; //タップされたセルのindexを記録
 
-/**
- Courseクラスのインスタンスが格納された配列を引数に、カテゴリ画面でチェックマークがついている項目に対応するコースを検索する
- */
-- (void) getSearchedbyCategoryMutableArray:(NSMutableArray *)course_table_datas {
-    for(int i = 0;i < [course_table_datas count];i++){
-        int count = (int)[course_table_datas count]; //既にi番目のCourseインスタンスが削除されているか確認するための変数
-        Course *course = [course_table_datas objectAtIndex:i];
-        
-        //「春のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「春」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(isSpringChecked){
-            if(![course.tag_name containsObject:@"春"]){
-                [course_table_datas removeObjectAtIndex:i];
-                i--; //削除後for文に移ると、1つ飛ばして参照されるため、i--;
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「夏のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「夏」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isSummerChecked){
-                if(![course.tag_name containsObject:@"夏"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「秋のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「秋」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isAutumnChecked){
-                if(![course.tag_name containsObject:@"秋"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「冬のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「冬」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isWinterChecked){
-                if(![course.tag_name containsObject:@"冬"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「公園」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「公園」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isParkChecked){
-                if(![course.tag_name containsObject:@"公園"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「海」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「海」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isSeaChecked){
-                if(![course.tag_name containsObject:@"海"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-    }
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -123,22 +44,23 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
     [SVProgressHUD dismiss];
     
     course_table_model = [[CourseModel alloc]init];
+    //course_table_model = [CourseModel sharedManager];
     
     //SegmentedContrlの初期状態が「距離順」なので、距離を降順でソート
-    [course_table_model getSortedbyDistanceMutableArray:course_table_model->course_table_data];
+    [course_table_model sortedbyDistanceMutableArray:course_table_model->course_table_data];
     
     //他の画面で「戻る」を選択し、本画面に戻ってきた場合でもSegmented Controlに
     //対応するソート結果を保持するために、sortedType毎にソートする
     if([sortedType isEqualToString:@"distance"]){
-        [course_table_model getSortedbyDistanceMutableArray:course_table_model->course_table_data];
+        [course_table_model sortedbyDistanceMutableArray:course_table_model->course_table_data];
     }else if([sortedType isEqualToString:@"calorie"]){
-        [course_table_model getSortedbyCaloryMutableArray:course_table_model->course_table_data];
+        [course_table_model sortedbyCaloryMutableArray:course_table_model->course_table_data];
     }else if([sortedType isEqualToString:@"time"]){
-        [course_table_model getSortedbyTimeMutableArray:course_table_model->course_table_data];
+        [course_table_model sortedbyTimeMutableArray:course_table_model->course_table_data];
     }
     
     //カテゴリ画面でチェックマークがついている項目に対応するコースを検索
-    [self getSearchedbyCategoryMutableArray:course_table_model->course_table_data];
+    [course_table_model searchedbyCategoryMutableArray:course_table_model->course_table_data isSpringChecked:isSpringChecked isSummerChecked:isSummerChecked isAutumnChecked:isAutumnChecked isWinterChecked:isWinterChecked isParkChecked:isParkChecked isSeaChecked:isSeaChecked];
     
     [self.myTableView reloadData];
 }
@@ -151,21 +73,21 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
         NSLog(@"距離順");
         //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、距離を降順でソート
         if([course_table_model->course_table_data count] != 0){
-            [course_table_model getSortedbyDistanceMutableArray:course_table_model->course_table_data];
+            [course_table_model sortedbyDistanceMutableArray:course_table_model->course_table_data];
             sortedType = @"distance";
         }
     }else if(self.mySegmentedControl.selectedSegmentIndex == 1){
         NSLog(@"カロリー順");
         //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、消費カロリー(男性消費カロリー)を降順でソート
         if([course_table_model->course_table_data count] != 0){
-            [course_table_model getSortedbyCaloryMutableArray:course_table_model->course_table_data];
+            [course_table_model sortedbyCaloryMutableArray:course_table_model->course_table_data];
             sortedType = @"calorie";
         }
     }else if(self.mySegmentedControl.selectedSegmentIndex == 2){
         NSLog(@"時間順");
         //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、所要時間を降順でソート
         if([course_table_model->course_table_data count] != 0){
-            [course_table_model getSortedbyTimeMutableArray:course_table_model->course_table_data];
+            [course_table_model sortedbyTimeMutableArray:course_table_model->course_table_data];
             sortedType = @"time";
         }
     }
