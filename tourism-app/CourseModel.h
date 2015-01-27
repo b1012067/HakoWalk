@@ -21,7 +21,7 @@
 + (CourseModel *)sharedManager;
 - (id)init;
 - (Course *) getDataWithName:(NSString *)name;
-- (void) searchedbyCategoryMutableArray:(NSMutableArray *)course_table_datas isSpringChecked:(BOOL)isSpringChecked isSummerChecked:(BOOL)isSummerChecked isAutumnChecked:(BOOL)isAutumnChecked isWinterChecked:(BOOL)isWinterChecked isParkChecked:(BOOL)isParkChecked isSeaChecked:(BOOL)isSeaChecked;
+- (NSArray *)getSearchedByCategory:(BOOL)isSpringChecked isSummerChecked:(BOOL)isSummerChecked isAutumnChecked:(BOOL)isAutumnChecked isWinterChecked:(BOOL)isWinterChecked isParkChecked:(BOOL)isParkChecked isSeaChecked:(BOOL)isSeaChecked;
 - (void) sortedbyDistanceMutableArray:(NSMutableArray *)course_table_datas;
 - (void) sortedbyCaloryMutableArray:(NSMutableArray *)course_table_datas;
 - (void) sortedbyTimeMutableArray:(NSMutableArray *)course_table_datas;

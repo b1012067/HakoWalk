@@ -203,82 +203,167 @@ static CourseModel *_sharedManager = nil;
 }
 
 /**
- Courseクラスのインスタンスが格納された配列を引数に、カテゴリ画面でチェックマークがついている項目に対応するコースを検索する
+ 春のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 春のおすすめのタグのついたCourseインスタンスが格納された配列
  */
-- (void) searchedbyCategoryMutableArray:(NSMutableArray *)course_table_datas isSpringChecked:(BOOL)isSpringChecked isSummerChecked:(BOOL)isSummerChecked isAutumnChecked:(BOOL)isAutumnChecked isWinterChecked:(BOOL)isWinterChecked isParkChecked:(BOOL)isParkChecked isSeaChecked:(BOOL)isSeaChecked {
-    for(int i = 0;i < [course_table_datas count];i++){
-        int count = (int)[course_table_datas count]; //既にi番目のCourseインスタンスが削除されているか確認するための変数
-        Course *course = [course_table_datas objectAtIndex:i];
+- (NSArray *)getSearchedBySpring {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
         
-        //「春のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「春」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(isSpringChecked){
-            if(![course.tag_name containsObject:@"春"]){
-                [course_table_datas removeObjectAtIndex:i];
-                i--; //削除後for文に移ると、1つ飛ばして参照されるため、i--;
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「夏のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「夏」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isSummerChecked){
-                if(![course.tag_name containsObject:@"夏"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「秋のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「秋」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isAutumnChecked){
-                if(![course.tag_name containsObject:@"秋"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「冬のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「冬」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isWinterChecked){
-                if(![course.tag_name containsObject:@"冬"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「公園」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「公園」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isParkChecked){
-                if(![course.tag_name containsObject:@"公園"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「海」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「海」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isSeaChecked){
-                if(![course.tag_name containsObject:@"海"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
+        if([course.tag_name containsObject:@"春"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
         }
     }
+    
+    return results;
+}
+
+/**
+ 夏のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 夏のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedBySummer {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"夏"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 秋のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 秋のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedByAutumn {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"秋"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 冬のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 冬のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedByWinter {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"冬"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 公園のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 公園のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedByPark {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"公園"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 海のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 海のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedBySea {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"海"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 各カテゴリ検索結果の積集合を取り、配列に格納し、その配列を返す
+ カテゴリに何もチェックマークがついていない場合は、そのまま返す
+ 
+ @return コース一覧画面で表示するコース
+ */
+- (NSArray *)getSearchedByCategory:(BOOL)isSpringChecked isSummerChecked:(BOOL)isSummerChecked isAutumnChecked:(BOOL)isAutumnChecked isWinterChecked:(BOOL)isWinterChecked isParkChecked:(BOOL)isParkChecked isSeaChecked:(BOOL)isSeaChecked {
+    NSArray *springAns = course_table_data;
+    NSArray *summerAns = course_table_data;
+    NSArray *autumnAns = course_table_data;
+    NSArray *winterAns = course_table_data;
+    NSArray *parkAns = course_table_data;
+    NSArray *seaAns = course_table_data;
+
+    if(isSpringChecked){
+        springAns = [self getSearchedBySpring];
+    }
+    if(isSummerChecked){
+        summerAns = [self getSearchedBySummer];
+    }
+    if(isAutumnChecked){
+        autumnAns = [self getSearchedByAutumn];
+    }
+    if(isWinterChecked){
+        winterAns = [self getSearchedByWinter];
+    }
+    if(isParkChecked){
+        parkAns = [self getSearchedByPark];
+    }
+    if(isSeaChecked){
+        seaAns = [self getSearchedBySea];
+    }
+    
+    NSMutableSet *intersect = [NSMutableSet setWithArray:springAns];
+    NSSet *set1 = [NSSet setWithArray:summerAns];
+    [intersect intersectSet:set1];
+    NSSet *set2 = [NSSet setWithArray:autumnAns];
+    [intersect intersectSet:set2];
+    NSSet *set3 = [NSSet setWithArray:winterAns];
+    [intersect intersectSet:set3];
+    NSSet *set4 = [NSSet setWithArray:parkAns];
+    [intersect intersectSet:set4];
+    NSSet *set5 = [NSSet setWithArray:seaAns];
+    [intersect intersectSet:set5];
+    
+    NSMutableArray *results = [[intersect allObjects] mutableCopy];
+        
+    return [NSMutableArray arrayWithArray:results];
 }
 
 /**
