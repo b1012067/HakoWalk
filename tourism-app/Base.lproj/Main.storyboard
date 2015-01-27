@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="inH-XH-9fV">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Top View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="TopViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="q1a-al-dbY"/>
+                    <connections>
+                        <segue destination="oIO-Kj-QD2" kind="show" identifier="course_table" id="AbC-7Q-Lza"/>
+                        <segue destination="ePf-2z-ZI6" kind="show" identifier="course_map" id="hPI-dC-kUh"/>
+                        <segue destination="bD0-Mr-Gwq" kind="show" identifier="info" id="1W1-2D-HqG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="145"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="aS8-dt-Zeu">
+            <objects>
+                <viewController id="bD0-Mr-Gwq" customClass="InfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y6U-AI-I51"/>
+                        <viewControllerLayoutGuide type="bottom" id="GNq-lk-SVp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xpK-A3-bti">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Leo-ke-jg8">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="このアプリについて" id="jxZ-4b-dSF">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="dgf-Ge-1Lz">
+                                            <connections>
+                                                <action selector="myNavigationBuckButtonAction:" destination="bD0-Mr-Gwq" id="Wxn-mG-fYD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYx-Nh-hBD">
+                                <rect key="frame" x="11" y="64" width="578" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">[はこウォークとは]
+はこウォークは、函館の景観を楽しみながら歩くことでヘルスケアも行えるウォーキングアプリです。函館市が提供している「健康ウォーキングマップ」のデータを利用しています。47のウォーキングコースを収録しており、函館市内を網羅しています。各コースでは、魅力的なスポットの紹介をしています。一味違った函館の観光を楽しみたい方にもぴったりのアプリです。
+
+[はこウォークの主な機能]
+・地図からコースを探すことができます
+・一覧からコースを探すことができます
+・季節毎のおすすめコース、近くに公園があるコース、近くに海があるコースを検索できます
+・コースの一覧を移動距離、カロリー、所用時間のそれぞれ、少ない順に並び替えることができます
+・函館市が提供している「健康ウォーキングマップ」を見ることができます
+
+[推奨環境]
+はこウォークはGPSを利用するため、GPSを搭載したデバイスでのご利用をお勧めします。
+
+[協力サイト]
+健康ウォーキングマップ : http://www.city.hakodate.hokkaido.jp/docs/2014012700900/
+
+[サポートサイト]
+はこウォーク Facebookページ : https://www.facebook.com/hakowalk
+
+[使い方]
+1. 地図からコースを選んで歩く
+
+TOP画面
+「マップから探す」をタップします。
+
+コース一覧マップ画面
+フラッグをタップし、吹き出しをタップします。
+
+コース詳細画面
+「このコースを歩く」をタップします。
+
+
+2. コース一覧からコースを選んで歩く
+
+TOP画面
+「コース一覧から探す」をタップします。
+
+コース一覧画面
+コースをタップします。
+
+コース詳細画面
+「このコースを歩く」をタップします。
+
+
+3. コース一覧からコースを絞り込む
+
+TOP画面
+「コース一覧から探す」をタップします。
+
+コース一覧画面
+「カテゴリ」をタップします。
+
+カテゴリ画面
+コース一覧画面に表示させたいコースのカテゴリをタップし、「完了」をタップします。
+
+
+4. 函館市が提供している「健康ウォーキングマップ」を見る
+4-1. コース詳細画面から見る
+
+TOP画面
+「マップから探す」をタップします。
+
+コース一覧マップ画面
+フラッグをタップし、吹き出しをタップします。
+
+コース詳細画面
+「健康ウォーキングマップを見る」をタップします。
+
+4-2. コース詳細マップ画面から見る
+
+TOP画面
+「マップから探す」をタップします。
+
+コース一覧マップ画面
+フラッグをタップし、吹き出しをタップします。
+
+コース詳細画面
+「このコースを歩く」をタップします。
+
+コース詳細マップ画面
+「健康ウォーキングマップを見る」をタップします。
+
+
+5. スポットを見る
+
+TOP画面
+「マップから探す」をタップします。
+
+コース一覧マップ画面
+フラッグをタップし、吹き出しをタップします。
+
+コース詳細画面
+「このコースを歩く」をタップします。
+
+コース詳細マップ画面
+赤いピンをタップし、吹き出しをタップします。
+
+
+※はこウォークに掲載している消費カロリーは、以下の計算式によって算出しています。体重は成人男女(20歳~64歳)の平均体重を利用しています。METsは3と設定しています。 METs : 身体活動の強さを表す単位。通常の歩行では、METsは3とされています。 
+消費カロリー(kcal)＝1.05×METs×時間(h)×体重(kg)
+
+※マップに表示されるマーカー、線、アイコンについて
+青いマーカー : 現在地を示しています
+赤い線 : 各コースのルートを示しています
+青い線 : 選択したコースのルートを示しています
+フラッグ : 各コースのスタート・ゴール地点を示しています
+赤いピン : コースのスポットを示しています
+市電アイコン : 最寄りの電停を示しています
+バスアイコン : 最寄りのバス停を示しています
+JRアイコン : 最寄りのJRを示しています
+矢印アイコン : 1度タップすると現在地を示します。2度タップすると進む方向を示します。
+
+[備考]
+本アプリケーションの利用によって発生した損害やトラブルに対しましては、一切責任を負いませんのでご了承ください。
+
+Copyright(c) Future University Hakodate. All Rights Reserved.</mutableString>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Leo-ke-jg8" secondAttribute="trailing" constant="-16" id="BKQ-b4-JI2"/>
+                            <constraint firstItem="cYx-Nh-hBD" firstAttribute="leading" secondItem="xpK-A3-bti" secondAttribute="leadingMargin" constant="-5" id="JZY-J0-MDC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cYx-Nh-hBD" secondAttribute="trailing" constant="-5" id="LZS-x3-xKe"/>
+                            <constraint firstItem="Leo-ke-jg8" firstAttribute="top" secondItem="Y6U-AI-I51" secondAttribute="bottom" id="eyN-l5-PLE"/>
+                            <constraint firstItem="Leo-ke-jg8" firstAttribute="leading" secondItem="xpK-A3-bti" secondAttribute="leadingMargin" constant="-16" id="gJc-PR-Dra"/>
+                            <constraint firstItem="GNq-lk-SVp" firstAttribute="top" secondItem="cYx-Nh-hBD" secondAttribute="bottom" id="iMC-N8-Nmc"/>
+                            <constraint firstItem="cYx-Nh-hBD" firstAttribute="top" secondItem="Leo-ke-jg8" secondAttribute="bottom" id="nRl-5k-3Zo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myTextView" destination="cYx-Nh-hBD" id="836-rI-M46"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o1h-Sq-q6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="1510"/>
+        </scene>
+        <!--Course Table View Controller-->
+        <scene sceneID="dcO-M6-y45">
+            <objects>
+                <viewController id="oIO-Kj-QD2" customClass="CourseTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3rI-cl-tAC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gfy-gL-Uq3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ADe-Ic-3hy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cZo-ds-c6e">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="コース一覧" id="8Ri-gV-sJY">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="wiu-9x-WBk">
+                                            <connections>
+                                                <action selector="dismissSelf:" destination="oIO-Kj-QD2" id="toU-mC-JHW"/>
+                                                <segue destination="wNS-Ig-mJY" kind="unwind" unwindAction="firstViewReturnActionForSegue:" id="whL-bo-2I3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="カテゴリ" id="7Le-B6-PaM">
+                                            <connections>
+                                                <segue destination="Hif-Ol-KyY" kind="show" identifier="tableTocategory" id="Swc-vL-Qtl"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="40" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oqQ-OB-S9O">
+                                <rect key="frame" x="0.0" y="64" width="600" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="uU3-5i-IEe"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="距離順"/>
+                                    <segment title="カロリー順"/>
+                                    <segment title="時間順"/>
+                                </segments>
+                                <connections>
+                                    <action selector="mySegmentedControlAction:" destination="oIO-Kj-QD2" eventType="valueChanged" id="2Nb-4s-QX4"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xr9-G1-tOx">
+                                <rect key="frame" x="0.0" y="105" width="600" height="495"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="xr9-G1-tOx" secondAttribute="trailing" constant="-16" id="0Ee-1H-rxd"/>
+                            <constraint firstItem="Gfy-gL-Uq3" firstAttribute="top" secondItem="xr9-G1-tOx" secondAttribute="bottom" id="2mR-4A-dhc"/>
+                            <constraint firstItem="oqQ-OB-S9O" firstAttribute="leading" secondItem="ADe-Ic-3hy" secondAttribute="leadingMargin" constant="-16" id="2ue-7n-5cs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oqQ-OB-S9O" secondAttribute="trailing" constant="-16" id="79w-49-eKh"/>
+                            <constraint firstItem="cZo-ds-c6e" firstAttribute="leading" secondItem="ADe-Ic-3hy" secondAttribute="leadingMargin" constant="-16" id="C4Y-mY-eCk"/>
+                            <constraint firstItem="cZo-ds-c6e" firstAttribute="top" secondItem="3rI-cl-tAC" secondAttribute="bottom" id="FEi-Fb-nsP"/>
+                            <constraint firstItem="xr9-G1-tOx" firstAttribute="top" secondItem="oqQ-OB-S9O" secondAttribute="bottom" constant="1" id="QUS-UR-2Dc"/>
+                            <constraint firstItem="oqQ-OB-S9O" firstAttribute="top" secondItem="cZo-ds-c6e" secondAttribute="bottom" id="SlF-6z-oOl"/>
+                            <constraint firstItem="xr9-G1-tOx" firstAttribute="top" secondItem="oqQ-OB-S9O" secondAttribute="bottom" constant="1" id="TTu-7i-XoM"/>
+                            <constraint firstItem="oqQ-OB-S9O" firstAttribute="top" secondItem="cZo-ds-c6e" secondAttribute="bottom" id="lbP-R7-k5C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cZo-ds-c6e" secondAttribute="trailing" constant="-16" id="q7y-FZ-Tvn"/>
+                            <constraint firstItem="xr9-G1-tOx" firstAttribute="leading" secondItem="ADe-Ic-3hy" secondAttribute="leadingMargin" constant="-16" id="rm5-cc-N9B"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3hR-5Z-WLf"/>
+                    <connections>
+                        <outlet property="mySegmentedControl" destination="oqQ-OB-S9O" id="ghs-Gs-IZd"/>
+                        <outlet property="myTableView" destination="xr9-G1-tOx" id="syU-cR-RrR"/>
+                        <segue destination="MWC-Uy-Y2q" kind="show" identifier="detail" id="NHc-ck-j4F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQS-RR-aez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wNS-Ig-mJY" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1834" y="136"/>
+        </scene>
+        <!--Course Map View Controller-->
+        <scene sceneID="52g-tb-xjO">
+            <objects>
+                <viewController id="ePf-2z-ZI6" customClass="CourseMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DXH-pu-pVf"/>
+                        <viewControllerLayoutGuide type="bottom" id="g6X-ML-JEF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dp3-RT-zQA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56g-jY-6or">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items/>
+                            </toolbar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wGW-Gd-HRX">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                            </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc6-w4-drZ">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Title" id="gCs-cd-MsZ">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="hwz-Sr-DW4">
+                                            <connections>
+                                                <action selector="myNavigationBuckButtonAction:" destination="ePf-2z-ZI6" id="d0P-WV-EAC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="56g-jY-6or" firstAttribute="top" secondItem="wGW-Gd-HRX" secondAttribute="bottom" id="3PJ-7f-IJk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wGW-Gd-HRX" secondAttribute="trailing" constant="-16" id="3jG-8q-rcL"/>
+                            <constraint firstItem="56g-jY-6or" firstAttribute="top" secondItem="wGW-Gd-HRX" secondAttribute="bottom" id="4pa-BS-ai6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gc6-w4-drZ" secondAttribute="trailing" constant="-16" id="9FI-Hc-e6S"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="56g-jY-6or" secondAttribute="trailing" constant="-16" id="KDw-6o-4Ig"/>
+                            <constraint firstItem="wGW-Gd-HRX" firstAttribute="leading" secondItem="dp3-RT-zQA" secondAttribute="leadingMargin" constant="-16" id="RHZ-7x-nLk"/>
+                            <constraint firstItem="56g-jY-6or" firstAttribute="leading" secondItem="dp3-RT-zQA" secondAttribute="leadingMargin" constant="-16" id="RzG-3B-ZRe"/>
+                            <constraint firstItem="gc6-w4-drZ" firstAttribute="leading" secondItem="dp3-RT-zQA" secondAttribute="leadingMargin" constant="-16" id="XeY-M6-YjP"/>
+                            <constraint firstItem="wGW-Gd-HRX" firstAttribute="top" secondItem="gc6-w4-drZ" secondAttribute="bottom" id="mMu-3l-Qwn"/>
+                            <constraint firstItem="gc6-w4-drZ" firstAttribute="top" secondItem="DXH-pu-pVf" secondAttribute="bottom" id="ptq-Jg-a9g"/>
+                            <constraint firstItem="g6X-ML-JEF" firstAttribute="top" secondItem="56g-jY-6or" secondAttribute="bottom" id="qc9-O5-5Ea"/>
+                            <constraint firstItem="wGW-Gd-HRX" firstAttribute="top" secondItem="gc6-w4-drZ" secondAttribute="bottom" id="zGx-eX-GcH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="K5D-Ch-izU"/>
+                    <connections>
+                        <outlet property="myMapView" destination="wGW-Gd-HRX" id="bYf-o8-E4T"/>
+                        <outlet property="myNaviItem" destination="gCs-cd-MsZ" id="qpk-YE-Dd4"/>
+                        <outlet property="myToolBar" destination="56g-jY-6or" id="WPN-vq-WhI"/>
+                        <segue destination="MWC-Uy-Y2q" kind="show" identifier="MapToDetail" id="vi7-3m-iwG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a1g-10-z8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="-1128"/>
+        </scene>
+        <!--Course Detail Map View Controller-->
+        <scene sceneID="28B-Lw-Pwv">
+            <objects>
+                <viewController id="W4b-i2-zI2" customClass="CourseDetailMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Iv-TB-jIs"/>
+                        <viewControllerLayoutGuide type="bottom" id="dz1-j5-0ZZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GIP-CJ-llQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YAw-BZ-JKT">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Title" id="Ngp-ca-33i">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="gLi-6P-GDh">
+                                            <connections>
+                                                <action selector="myNavigatioBuckButtonAction:" destination="W4b-i2-zI2" id="fal-o3-bzs"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eQH-Qf-60Y">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gzo-L1-ODY">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem id="etP-vb-MUq">
+                                        <connections>
+                                            <action selector="myButton:" destination="W4b-i2-zI2" id="ZlJ-kV-Ai3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eQH-Qf-60Y" firstAttribute="leading" secondItem="GIP-CJ-llQ" secondAttribute="leadingMargin" constant="-16" id="8rL-Bn-8Ch"/>
+                            <constraint firstItem="YAw-BZ-JKT" firstAttribute="leading" secondItem="GIP-CJ-llQ" secondAttribute="leadingMargin" constant="-16" id="E5g-UL-XMV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YAw-BZ-JKT" secondAttribute="trailing" constant="-16" id="QDF-B4-23o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eQH-Qf-60Y" secondAttribute="trailing" constant="-16" id="aSk-bS-FuL"/>
+                            <constraint firstItem="dz1-j5-0ZZ" firstAttribute="top" secondItem="Gzo-L1-ODY" secondAttribute="bottom" id="cCR-Pn-y4P"/>
+                            <constraint firstItem="Gzo-L1-ODY" firstAttribute="leading" secondItem="GIP-CJ-llQ" secondAttribute="leadingMargin" constant="-16" id="fca-cK-xXw"/>
+                            <constraint firstItem="Gzo-L1-ODY" firstAttribute="top" secondItem="eQH-Qf-60Y" secondAttribute="bottom" id="g3e-pE-WbW"/>
+                            <constraint firstItem="YAw-BZ-JKT" firstAttribute="top" secondItem="4Iv-TB-jIs" secondAttribute="bottom" id="kWP-dn-xX5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gzo-L1-ODY" secondAttribute="trailing" constant="-16" id="mXI-la-rGd"/>
+                            <constraint firstItem="Gzo-L1-ODY" firstAttribute="top" secondItem="eQH-Qf-60Y" secondAttribute="bottom" id="mf6-0m-Rgt"/>
+                            <constraint firstItem="eQH-Qf-60Y" firstAttribute="top" secondItem="YAw-BZ-JKT" secondAttribute="bottom" id="zUU-UX-7Ba"/>
+                            <constraint firstItem="eQH-Qf-60Y" firstAttribute="top" secondItem="YAw-BZ-JKT" secondAttribute="bottom" id="zwX-PR-tYv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LT1-ef-HBZ"/>
+                    <connections>
+                        <outlet property="myMapView" destination="eQH-Qf-60Y" id="SqM-tg-9Ge"/>
+                        <outlet property="myNavigationItem" destination="Ngp-ca-33i" id="U7e-zY-FyO"/>
+                        <outlet property="myToolBar" destination="Gzo-L1-ODY" id="LDG-A6-Fr2"/>
+                        <segue destination="wcf-DD-ijF" kind="show" identifier="MapToSpot" id="RRe-8e-6rn"/>
+                        <segue destination="wpK-Ri-VO3" kind="show" identifier="MapToHealth" id="VYS-yA-MRz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QFo-us-QyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="-1564"/>
+        </scene>
+        <!--Spot Detail View Controller-->
+        <scene sceneID="ETZ-JA-N2H">
+            <objects>
+                <viewController id="wcf-DD-ijF" customClass="SpotDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ujr-2s-c3P"/>
+                        <viewControllerLayoutGuide type="bottom" id="hAQ-ar-Vr5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="btv-JG-EJI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d94-aI-Yw7">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Title" id="3LA-Gz-Pvb">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="pdO-S4-VDA">
+                                            <connections>
+                                                <action selector="myNavigationBuckButtonAction:" destination="wcf-DD-ijF" id="TQ8-YR-Ke1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DCk-E7-BGl">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fBn-1V-qH9">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="236"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hAQ-ar-Vr5" firstAttribute="top" secondItem="DCk-E7-BGl" secondAttribute="bottom" id="404-Lo-XgS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d94-aI-Yw7" secondAttribute="trailing" constant="-16" id="5gk-42-dqu"/>
+                            <constraint firstItem="DCk-E7-BGl" firstAttribute="top" secondItem="d94-aI-Yw7" secondAttribute="bottom" id="AhP-7D-Phk"/>
+                            <constraint firstItem="DCk-E7-BGl" firstAttribute="top" secondItem="d94-aI-Yw7" secondAttribute="bottom" id="Emo-Lo-Z0H"/>
+                            <constraint firstItem="d94-aI-Yw7" firstAttribute="leading" secondItem="btv-JG-EJI" secondAttribute="leadingMargin" constant="-16" id="NkY-q7-kH8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DCk-E7-BGl" secondAttribute="trailing" constant="-16" id="fMx-Mj-YeD"/>
+                            <constraint firstItem="DCk-E7-BGl" firstAttribute="leading" secondItem="btv-JG-EJI" secondAttribute="leadingMargin" constant="-16" id="gui-Sc-6vv"/>
+                            <constraint firstItem="d94-aI-Yw7" firstAttribute="top" secondItem="ujr-2s-c3P" secondAttribute="bottom" id="ix8-IF-tNl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Oth-QT-RhL"/>
+                    <connections>
+                        <outlet property="myImageView" destination="fBn-1V-qH9" id="N2I-it-hoY"/>
+                        <outlet property="myNavigationItem" destination="3LA-Gz-Pvb" id="rgm-Ev-zbq"/>
+                        <outlet property="myTableView" destination="DCk-E7-BGl" id="O8Z-Po-Aai"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yft-Aw-FcK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2949" y="-1564"/>
+        </scene>
+        <!--Health Walking Map Detail View Controller-->
+        <scene sceneID="rKK-Ri-uJx">
+            <objects>
+                <viewController id="wpK-Ri-VO3" customClass="HealthWalkingMapDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G2H-Nu-kEO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ty0-Lh-lgG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sPC-Qw-S1B">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ZK-E2-aG2">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem id="BCj-q1-oCn">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="8zJ-ZK-0wj">
+                                            <connections>
+                                                <action selector="myNavigationBuckButtonAction:" destination="wpK-Ri-VO3" id="E0d-nX-m4V"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="te9-zV-Ox9">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5ZK-E2-aG2" firstAttribute="leading" secondItem="sPC-Qw-S1B" secondAttribute="leadingMargin" constant="-16" id="KzE-Ne-SoN"/>
+                            <constraint firstItem="te9-zV-Ox9" firstAttribute="top" secondItem="5ZK-E2-aG2" secondAttribute="bottom" id="Nzt-hz-aK0"/>
+                            <constraint firstItem="Ty0-Lh-lgG" firstAttribute="top" secondItem="te9-zV-Ox9" secondAttribute="bottom" id="Yks-eI-LFQ"/>
+                            <constraint firstItem="te9-zV-Ox9" firstAttribute="leading" secondItem="sPC-Qw-S1B" secondAttribute="leadingMargin" constant="-16" id="aUc-Ec-I56"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="te9-zV-Ox9" secondAttribute="trailing" constant="-16" id="lVL-az-yGG"/>
+                            <constraint firstItem="5ZK-E2-aG2" firstAttribute="top" secondItem="G2H-Nu-kEO" secondAttribute="bottom" id="ubT-Dg-xrX"/>
+                            <constraint firstItem="te9-zV-Ox9" firstAttribute="top" secondItem="5ZK-E2-aG2" secondAttribute="bottom" id="zX8-vr-uDq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5ZK-E2-aG2" secondAttribute="trailing" constant="-16" id="zef-LR-SnU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dux-9T-OHV"/>
+                    <connections>
+                        <outlet property="myWebView" destination="te9-zV-Ox9" id="sHn-og-nJ0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PQS-Le-0Ih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2949" y="-718"/>
+        </scene>
+        <!--Course Detail View Controller-->
+        <scene sceneID="z7O-U0-LRg">
+            <objects>
+                <viewController id="MWC-Uy-Y2q" customClass="CourseDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qa8-JC-x42"/>
+                        <viewControllerLayoutGuide type="bottom" id="1J7-Zp-KsS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iYJ-ET-edE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paO-Dl-hWg">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Title" id="hye-yR-fNN">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="l3l-Jm-kHR">
+                                            <connections>
+                                                <action selector="myNavigationBuckButtonAction:" destination="MWC-Uy-Y2q" id="COq-Vx-cKg"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2Gw-RD-lml">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="njf-lZ-pbP">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="248"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Gw-RD-lml" secondAttribute="trailing" constant="-16" id="4qY-Di-iqo"/>
+                            <constraint firstItem="2Gw-RD-lml" firstAttribute="top" secondItem="paO-Dl-hWg" secondAttribute="bottom" id="Pi4-1D-hU8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="paO-Dl-hWg" secondAttribute="trailing" constant="-16" id="VCQ-2J-kCR"/>
+                            <constraint firstItem="2Gw-RD-lml" firstAttribute="top" secondItem="paO-Dl-hWg" secondAttribute="bottom" id="YTZ-Oe-Qmi"/>
+                            <constraint firstItem="1J7-Zp-KsS" firstAttribute="top" secondItem="2Gw-RD-lml" secondAttribute="bottom" id="svb-G3-EE0"/>
+                            <constraint firstItem="2Gw-RD-lml" firstAttribute="leading" secondItem="iYJ-ET-edE" secondAttribute="leadingMargin" constant="-16" id="wLE-Zw-nUH"/>
+                            <constraint firstItem="paO-Dl-hWg" firstAttribute="top" secondItem="qa8-JC-x42" secondAttribute="bottom" id="wXZ-EA-zzC"/>
+                            <constraint firstItem="paO-Dl-hWg" firstAttribute="leading" secondItem="iYJ-ET-edE" secondAttribute="leadingMargin" constant="-16" id="yJj-iv-Bmj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="QyI-kc-nOt"/>
+                    <connections>
+                        <outlet property="myImageView" destination="njf-lZ-pbP" id="wf6-vn-smR"/>
+                        <outlet property="myNavigationItem" destination="hye-yR-fNN" id="OGu-Og-myq"/>
+                        <outlet property="myTableView" destination="2Gw-RD-lml" id="BME-c4-Bq4"/>
+                        <segue destination="W4b-i2-zI2" kind="show" identifier="detailmap" id="hwF-Yj-bvm"/>
+                        <segue destination="wpK-Ri-VO3" kind="show" identifier="walkingmap" id="m2A-yz-i2n"/>
+                        <segue destination="wcf-DD-ijF" kind="show" identifier="spot_detail" id="dzt-A5-KlY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6T0-yn-QZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="-718"/>
+        </scene>
+        <!--Category View Controller-->
+        <scene sceneID="lMn-nY-FZx">
+            <objects>
+                <viewController id="Hif-Ol-KyY" customClass="CategoryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ecd-X6-j4N"/>
+                        <viewControllerLayoutGuide type="bottom" id="5B6-Dv-quJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fvF-2A-DWg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTJ-ba-1qr">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="カテゴリ" id="gpq-1l-Cc5">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="bcM-6P-BHT">
+                                            <connections>
+                                                <action selector="myNavigationBuckButtonAction:" destination="Hif-Ol-KyY" id="pMg-mw-9Wk"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="完了" id="3xJ-V9-CVn">
+                                            <connections>
+                                                <segue destination="oIO-Kj-QD2" kind="show" identifier="categoryTotable" id="eNN-Id-veV"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Eg6-Gv-TZe">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eg6-Gv-TZe" firstAttribute="leading" secondItem="fvF-2A-DWg" secondAttribute="leadingMargin" constant="-16" id="4Xj-oh-zAl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Eg6-Gv-TZe" secondAttribute="trailing" constant="-16" id="Lyp-sB-blp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bTJ-ba-1qr" secondAttribute="trailing" constant="-16" id="O0e-4i-IeF"/>
+                            <constraint firstItem="Eg6-Gv-TZe" firstAttribute="top" secondItem="bTJ-ba-1qr" secondAttribute="bottom" id="Vv2-qe-TUX"/>
+                            <constraint firstItem="bTJ-ba-1qr" firstAttribute="top" secondItem="ecd-X6-j4N" secondAttribute="bottom" id="YkE-6k-8dI"/>
+                            <constraint firstItem="5B6-Dv-quJ" firstAttribute="top" secondItem="Eg6-Gv-TZe" secondAttribute="bottom" id="dA2-sJ-yhz"/>
+                            <constraint firstItem="Eg6-Gv-TZe" firstAttribute="top" secondItem="bTJ-ba-1qr" secondAttribute="bottom" id="lBK-n3-rhm"/>
+                            <constraint firstItem="bTJ-ba-1qr" firstAttribute="leading" secondItem="fvF-2A-DWg" secondAttribute="leadingMargin" constant="-16" id="ngv-Yx-idl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eo9-ZR-qyE"/>
+                    <connections>
+                        <outlet property="myNavigationFinishButton" destination="3xJ-V9-CVn" id="edA-pp-5m5"/>
+                        <outlet property="myTableView" destination="Eg6-Gv-TZe" id="mz6-FU-AcU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4mi-CW-OYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2797" y="150"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7gV-Ek-NWy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="inH-XH-9fV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uAj-t4-pcq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1pC-X5-2kL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rSL-4R-Dro" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="81" y="136"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vi7-3m-iwG"/>
+        <segue reference="dzt-A5-KlY"/>
+        <segue reference="m2A-yz-i2n"/>
+        <segue reference="eNN-Id-veV"/>
+    </inferredMetricsTieBreakers>
+</document>
