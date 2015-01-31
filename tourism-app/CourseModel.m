@@ -13,6 +13,17 @@
 
 NSString *getCourseDatasSql = @"select distinct * FROM courses left outer join routes ON courses.courseid = routes.courseid left outer join spots ON courses.courseid = spots.courseid left outer join nearest_stops ON courses.courseid = nearest_stops.courseid left outer join tags ON courses.courseid = tags.courseid;";
 AppDelegate *appDelegate;
+static CourseModel *_sharedManager = nil;
+
++ (CourseModel *)sharedManager {
+    @synchronized(self){
+        if (!_sharedManager) {
+            _sharedManager = [CourseModel new];
+        }
+    }
+    
+    return _sharedManager;
+}
 
 /**
  init（NSObject）を上書きする(コンストラクタ)
@@ -192,11 +203,175 @@ AppDelegate *appDelegate;
 }
 
 /**
+ 春のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 春のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedBySpring {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"春"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 夏のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 夏のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedBySummer {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"夏"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 秋のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 秋のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedByAutumn {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"秋"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 冬のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 冬のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedByWinter {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"冬"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 公園のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 公園のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedByPark {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"公園"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 海のおすすめのタグがついたCourseインスタンスを配列に格納する
+ 
+ @return 海のおすすめのタグのついたCourseインスタンスが格納された配列
+ */
+- (NSArray *)getSearchedBySea {
+    NSMutableArray *results = [NSMutableArray array];
+    
+    for(int i = 0;i < [course_table_data count];i++){
+        Course *course = [course_table_data objectAtIndex:i];
+        
+        if([course.tag_name containsObject:@"海"]){
+            [results addObject:[course_table_data objectAtIndex:i]];
+        }
+    }
+    
+    return results;
+}
+
+/**
+ 各カテゴリ検索結果の積集合を取り、配列に格納し、その配列を返す
+ カテゴリに何もチェックマークがついていない場合は、そのまま返す
+ 
+ @return コース一覧画面で表示するコース
+ */
+- (NSArray *)getSearchedByCategory:(BOOL)isSpringChecked isSummerChecked:(BOOL)isSummerChecked isAutumnChecked:(BOOL)isAutumnChecked isWinterChecked:(BOOL)isWinterChecked isParkChecked:(BOOL)isParkChecked isSeaChecked:(BOOL)isSeaChecked {
+    NSArray *springAns = course_table_data;
+    NSArray *summerAns = course_table_data;
+    NSArray *autumnAns = course_table_data;
+    NSArray *winterAns = course_table_data;
+    NSArray *parkAns = course_table_data;
+    NSArray *seaAns = course_table_data;
+
+    if(isSpringChecked){
+        springAns = [self getSearchedBySpring];
+    }
+    if(isSummerChecked){
+        summerAns = [self getSearchedBySummer];
+    }
+    if(isAutumnChecked){
+        autumnAns = [self getSearchedByAutumn];
+    }
+    if(isWinterChecked){
+        winterAns = [self getSearchedByWinter];
+    }
+    if(isParkChecked){
+        parkAns = [self getSearchedByPark];
+    }
+    if(isSeaChecked){
+        seaAns = [self getSearchedBySea];
+    }
+    
+    NSMutableSet *intersect = [NSMutableSet setWithArray:springAns];
+    NSSet *set1 = [NSSet setWithArray:summerAns];
+    [intersect intersectSet:set1];
+    NSSet *set2 = [NSSet setWithArray:autumnAns];
+    [intersect intersectSet:set2];
+    NSSet *set3 = [NSSet setWithArray:winterAns];
+    [intersect intersectSet:set3];
+    NSSet *set4 = [NSSet setWithArray:parkAns];
+    [intersect intersectSet:set4];
+    NSSet *set5 = [NSSet setWithArray:seaAns];
+    [intersect intersectSet:set5];
+    
+    NSMutableArray *results = [[intersect allObjects] mutableCopy];
+        
+    return [NSMutableArray arrayWithArray:results];
+}
+
+/**
  Courseクラスのインスタンスが格納された配列を引数に、距離を降順でソートする
  
  @param course_table_datas Courseインスタンスが格納されている配列を引数とする
  */
-- (void) getSortedbyDistanceMutableArray:(NSMutableArray *)course_table_datas {
+- (void) sortedbyDistanceMutableArray:(NSMutableArray *)course_table_datas {
     for (int i = 0; i < [course_table_datas count] - 1; i++) {
         for (int j = (int)[course_table_datas count] - 1; j > i; j--) {
             Course *course1 = [course_table_datas objectAtIndex:j - 1];
@@ -213,7 +388,7 @@ AppDelegate *appDelegate;
  
  @param course_table_datas Courseインスタンスが格納されている配列を引数とする
  */
-- (void) getSortedbyCaloryMutableArray:(NSMutableArray *)course_table_datas {
+- (void) sortedbyCaloryMutableArray:(NSMutableArray *)course_table_datas {
     for (int i = 0; i < [course_table_datas count] - 1; i++) {
         for (int j = (int)[course_table_datas count] - 1; j > i; j--) {
             Course *course1 = [course_table_datas objectAtIndex:j - 1];
@@ -230,7 +405,7 @@ AppDelegate *appDelegate;
  
  @param course_table_datas Courseインスタンスが格納されている配列を引数とする
  */
-- (void) getSortedbyTimeMutableArray:(NSMutableArray *)course_table_datas {
+- (void) sortedbyTimeMutableArray:(NSMutableArray *)course_table_datas {
     for (int i = 0; i < [course_table_datas count] - 1; i++) {
         for (int j = (int)[course_table_datas count] - 1; j > i; j--) {
             Course *course1 = [course_table_datas objectAtIndex:j - 1];

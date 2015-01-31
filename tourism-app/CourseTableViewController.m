@@ -24,85 +24,7 @@
 
 NSString *sortedType;
 int numberOfIndexPath_row; //タップされたセルのindexを記録
-
-/**
- Courseクラスのインスタンスが格納された配列を引数に、カテゴリ画面でチェックマークがついている項目に対応するコースを検索する
- */
-- (void) getSearchedbyCategoryMutableArray:(NSMutableArray *)course_table_datas {
-    for(int i = 0;i < [course_table_datas count];i++){
-        int count = (int)[course_table_datas count]; //既にi番目のCourseインスタンスが削除されているか確認するための変数
-        Course *course = [course_table_datas objectAtIndex:i];
-        
-        //「春のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「春」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(isSpringChecked){
-            if(![course.tag_name containsObject:@"春"]){
-                [course_table_datas removeObjectAtIndex:i];
-                i--; //削除後for文に移ると、1つ飛ばして参照されるため、i--;
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「夏のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「夏」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isSummerChecked){
-                if(![course.tag_name containsObject:@"夏"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「秋のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「秋」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isAutumnChecked){
-                if(![course.tag_name containsObject:@"秋"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「冬のおすすめ」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「冬」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isWinterChecked){
-                if(![course.tag_name containsObject:@"冬"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「公園」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「公園」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isParkChecked){
-                if(![course.tag_name containsObject:@"公園"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-        
-        //まだi番目のCourseインスタンスが削除されてなく、
-        //「海」にチェックマークがついていて、Courseインスタンスのタグ情報が格納された配列に
-        //「海」が含まれていない場合、Courseインスタンスを格納している配列からそのCourseインスタンスを削除する
-        if(count == [course_table_datas count]){
-            if(isSeaChecked){
-                if(![course.tag_name containsObject:@"海"]){
-                    [course_table_datas removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-        }
-    }
-}
+NSArray *display_course_datas; //表示するためのCourseインスタンスが格納された配列
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -122,23 +44,27 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
     //ローディング表示を止める処理
     [SVProgressHUD dismiss];
     
-    course_table_model = [[CourseModel alloc]init];
+    course_table_model = [CourseModel sharedManager];
+    
+    //カテゴリ画面でチェックマークがついている項目に対応するコースを検索
+    display_course_datas = [course_table_model getSearchedByCategory:isSpringChecked isSummerChecked:isSummerChecked isAutumnChecked:isAutumnChecked isWinterChecked:isWinterChecked isParkChecked:isParkChecked isSeaChecked:isSeaChecked];
     
     //SegmentedContrlの初期状態が「距離順」なので、距離を降順でソート
-    [course_table_model getSortedbyDistanceMutableArray:course_table_model->course_table_data];
+    if([display_course_datas count] != 0){
+        [course_table_model sortedbyDistanceMutableArray:(NSMutableArray *)display_course_datas];
+    }
     
     //他の画面で「戻る」を選択し、本画面に戻ってきた場合でもSegmented Controlに
     //対応するソート結果を保持するために、sortedType毎にソートする
-    if([sortedType isEqualToString:@"distance"]){
-        [course_table_model getSortedbyDistanceMutableArray:course_table_model->course_table_data];
-    }else if([sortedType isEqualToString:@"calorie"]){
-        [course_table_model getSortedbyCaloryMutableArray:course_table_model->course_table_data];
-    }else if([sortedType isEqualToString:@"time"]){
-        [course_table_model getSortedbyTimeMutableArray:course_table_model->course_table_data];
+    if([display_course_datas count] != 0){
+        if([sortedType isEqualToString:@"distance"]){
+            [course_table_model sortedbyDistanceMutableArray:(NSMutableArray *)display_course_datas];
+        }else if([sortedType isEqualToString:@"calorie"]){
+            [course_table_model sortedbyCaloryMutableArray:(NSMutableArray *)display_course_datas];
+        }else if([sortedType isEqualToString:@"time"]){
+            [course_table_model sortedbyTimeMutableArray:(NSMutableArray *)display_course_datas];
+        }
     }
-    
-    //カテゴリ画面でチェックマークがついている項目に対応するコースを検索
-    [self getSearchedbyCategoryMutableArray:course_table_model->course_table_data];
     
     [self.myTableView reloadData];
 }
@@ -147,26 +73,28 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
  SegmentedControlが変更された時に呼び出される
  */
 - (IBAction)mySegmentedControlAction:(id)sender {
-    if(self.mySegmentedControl.selectedSegmentIndex == 0){
-        NSLog(@"距離順");
-        //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、距離を降順でソート
-        if([course_table_model->course_table_data count] != 0){
-            [course_table_model getSortedbyDistanceMutableArray:course_table_model->course_table_data];
-            sortedType = @"distance";
-        }
-    }else if(self.mySegmentedControl.selectedSegmentIndex == 1){
-        NSLog(@"カロリー順");
-        //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、消費カロリー(男性消費カロリー)を降順でソート
-        if([course_table_model->course_table_data count] != 0){
-            [course_table_model getSortedbyCaloryMutableArray:course_table_model->course_table_data];
-            sortedType = @"calorie";
-        }
-    }else if(self.mySegmentedControl.selectedSegmentIndex == 2){
-        NSLog(@"時間順");
-        //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、所要時間を降順でソート
-        if([course_table_model->course_table_data count] != 0){
-            [course_table_model getSortedbyTimeMutableArray:course_table_model->course_table_data];
-            sortedType = @"time";
+    if([display_course_datas count] != 0){
+        if(self.mySegmentedControl.selectedSegmentIndex == 0){
+            NSLog(@"距離順");
+            //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、距離を降順でソート
+            if([display_course_datas count] != 0){
+                [course_table_model sortedbyDistanceMutableArray:(NSMutableArray *)display_course_datas];
+                sortedType = @"distance";
+            }
+        }else if(self.mySegmentedControl.selectedSegmentIndex == 1){
+            NSLog(@"カロリー順");
+            //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、消費カロリー(男性消費カロリー)を降順でソート
+            if([display_course_datas count] != 0){
+                [course_table_model sortedbyCaloryMutableArray:(NSMutableArray *)display_course_datas];
+                sortedType = @"calorie";
+            }
+        }else if(self.mySegmentedControl.selectedSegmentIndex == 2){
+            NSLog(@"時間順");
+            //カテゴリ検索によりCourseクラスのインスタンスが格納された配列が空ではない場合、所要時間を降順でソート
+            if([display_course_datas count] != 0){
+                [course_table_model sortedbyTimeMutableArray:(NSMutableArray *)display_course_datas];
+                sortedType = @"time";
+            }
         }
     }
     
@@ -187,7 +115,7 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
  @return セクションに含まれるCellの数
  */
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [course_table_model->course_table_data count];
+    return [display_course_datas count];
 }
 
 /**
@@ -259,7 +187,7 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
         [subview removeFromSuperview];
     }
     
-    Course *course = [course_table_model->course_table_data objectAtIndex:indexPath.row];
+    Course *course = [display_course_datas objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     //display size
@@ -298,8 +226,8 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
     
     
     //タグアイコンの表示
-    for(int i = 0;i < [course_table_model->course_table_data count];i++){
-        Course *tag_course = [course_table_model->course_table_data objectAtIndex:i];
+    for(int i = 0;i < [display_course_datas count];i++){
+        Course *tag_course = [display_course_datas objectAtIndex:i];
         
         if(indexPath.row == i){
             if(![tag_course.tag_name containsObject:@"春"]){
@@ -358,9 +286,9 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
  セルがタップされたときに呼ばれるアクションメソッド
  */
 -(void)modalImagePicker{
-    for(int i = 0;i < [course_table_model->course_table_data count];i++){
+    for(int i = 0;i < [display_course_datas count];i++){
         if(numberOfIndexPath_row == i){
-            Course *course = [course_table_model->course_table_data objectAtIndex:i];
+            Course *course = [display_course_datas objectAtIndex:i];
             course_name = course.course_name;
             [self performSegueWithIdentifier:@"detail" sender:self];
         }

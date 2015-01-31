@@ -67,7 +67,7 @@
     myNavigationItem.title = course_name;
     
     //ここからviewとmodelをつなぐ処理
-    course_map_model = [[CourseModel alloc] init];
+    course_map_model = [CourseModel sharedManager];
     
     
     //getStartAnnotationWithNameメソッドはコースのスタートのCustomAnnotationがはいった配列を返すメソッド

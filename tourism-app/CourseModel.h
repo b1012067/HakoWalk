@@ -18,11 +18,13 @@
     NSMutableArray *course_table_data;
 }
 
++ (CourseModel *)sharedManager;
 - (id)init;
 - (Course *) getDataWithName:(NSString *)name;
-- (void) getSortedbyDistanceMutableArray:(NSMutableArray *)course_table_datas;
-- (void) getSortedbyCaloryMutableArray:(NSMutableArray *)course_table_datas;
-- (void) getSortedbyTimeMutableArray:(NSMutableArray *)course_table_datas;
+- (NSArray *)getSearchedByCategory:(BOOL)isSpringChecked isSummerChecked:(BOOL)isSummerChecked isAutumnChecked:(BOOL)isAutumnChecked isWinterChecked:(BOOL)isWinterChecked isParkChecked:(BOOL)isParkChecked isSeaChecked:(BOOL)isSeaChecked;
+- (void) sortedbyDistanceMutableArray:(NSMutableArray *)course_table_datas;
+- (void) sortedbyCaloryMutableArray:(NSMutableArray *)course_table_datas;
+- (void) sortedbyTimeMutableArray:(NSMutableArray *)course_table_datas;
 - (NSMutableArray *) getStartAnnotation;
 - (NSMutableArray *) getAllCourseLine;
 - (NSMutableArray *) getSpotWithName:(NSString *)name;

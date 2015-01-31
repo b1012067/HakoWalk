@@ -26,7 +26,7 @@ int numberOfIndexPath_row; //タップされたセルのindexを記録
     // Do any additional setup after loading the view, typically from a nib.
     
     //CourseModelのインスタンス生成
-    course_model = [[CourseModel alloc]init];
+    course_model = [CourseModel sharedManager];
     //course_name(コース一覧画面で選択されたコース名)のコース情報が格納されたCourseインスタンスを取得
     course = [course_model getDataWithName:course_name];
     
