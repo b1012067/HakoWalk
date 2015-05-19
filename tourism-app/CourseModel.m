@@ -433,6 +433,12 @@ static CourseModel *_sharedManager = nil;
                                                                               ,[[course.route_longitude objectAtIndex:j] doubleValue]);
                 startAnnotation = [[CustomAnnotation alloc] initWithCoordinate:pin_point];
                 startAnnotation.title = course.course_name;
+                
+                //iOS8のバグで、アノテーションに文字数の多いものを表示させるとボタンの一がずれるのを防ぐため
+                //15文字以上のものは、14文字目まで表示し後は...で表示するように書き換えた。
+                startAnnotation.title = (startAnnotation.title.length > 15)?
+                [NSString stringWithFormat:@"%@...", [startAnnotation.title substringToIndex:14]]:startAnnotation.title;
+
                 [pins addObject:startAnnotation];
             }
         }
@@ -479,6 +485,12 @@ static CourseModel *_sharedManager = nil;
                                                                               [[course.spot_longitude objectAtIndex:j] doubleValue]);
                 spotAnnotation = [[CustomAnnotation alloc] initWithCoordinate:pin_point];
                 spotAnnotation.title = [course.spot_name objectAtIndex:j];
+                
+                //iOS8のバグで、アノテーションに文字数の多いものを表示させるとボタンの一がずれるのを防ぐため
+                //15文字以上のものは、14文字目まで表示し後は...で表示するように書き換えた。
+                spotAnnotation.title = (spotAnnotation.title.length > 15)?
+                [NSString stringWithFormat:@"%@...", [spotAnnotation.title substringToIndex:14]]:spotAnnotation.title;
+                
                 spotAnnotation.frag = @"spot";
                 [pins addObject:spotAnnotation];
             }
@@ -533,6 +545,12 @@ static CourseModel *_sharedManager = nil;
                                                                                   ,[[course.route_longitude objectAtIndex:j] doubleValue]);
                     startAnnotation = [[CustomAnnotation alloc] initWithCoordinate:pin_point];
                     startAnnotation.title = course.course_name;
+                    
+                    //iOS8のバグで、アノテーションに文字数の多いものを表示させるとボタンの一がずれるのを防ぐため
+                    //15文字以上のものは、14文字目まで表示し後は...で表示するように書き換えた。
+                    startAnnotation.title = (startAnnotation.title.length > 15)?
+                    [NSString stringWithFormat:@"%@...", [startAnnotation.title substringToIndex:14]]:startAnnotation.title;
+                    
                     startAnnotation.frag = @"start";
                     [pins addObject:startAnnotation];
                 }
